@@ -57,7 +57,6 @@ namespace GestionContactos
             /*Hecho por nacho*/
             string nombre = Microsoft.VisualBasic.Interaction.InputBox("Introduce el nombre del contacto:", "Añadir Contacto");
             string telefono = Microsoft.VisualBasic.Interaction.InputBox("Introduce el teléfono del contacto:", "Añadir Contacto");
-
             ValidarEntrada(nombre, telefono);
             AñadirContacto(nombre, telefono);
         }
@@ -96,6 +95,31 @@ namespace GestionContactos
         private void btnModificarTelefono_Click(object sender, EventArgs e)
         {
             /*Hecho por nacho*/
+            string nombre = Microsoft.VisualBasic.Interaction.InputBox("Introduce el nombre del contacto a modificar:", "Modificar Contacto");
+            string nuevoTelefono = Microsoft.VisualBasic.Interaction.InputBox("Introduce el nuevo teléfono:", "Modificar Contacto");
+            ValidarEntrada(nombre, nuevoTelefono);
+            ModificarTelefono(nombre, nuevoTelefono);
+        }
+        private void ModificarTelefono(string nombre, string nuevoTelefono)
+        {
+            bool encontrado = false;
+            for (int i = 0; i < MAX_CONTACTOS; i++)
+            {
+                if (nombres[i] == nombre)
+                {
+                    telefonos[i] = nuevoTelefono;
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (encontrado)
+            {
+                MessageBox.Show("Teléfono actualizado correctamente.", "Éxito");
+            }
+            else
+            {
+                MessageBox.Show("El contacto no existe.", "Error");
+            }
         }
 
         private void btnMostrar_Click(object sender, EventArgs e)
