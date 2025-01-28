@@ -125,6 +125,29 @@ namespace GestionContactos
         private void btnMostrar_Click(object sender, EventArgs e)
         {
             /*Hecho por brayan*/
+            MostrarContactos();
+        }
+
+        private void MostrarContactos()
+        {
+            string contactos = "Lista de contactos:\n";
+            bool hayContactos = false;
+
+            for (int i = 0; i < MAX_CONTACTOS; i++)
+            {
+                if (!string.IsNullOrEmpty(nombres[i]))
+                {
+                    contactos += $"{nombres[i]} - {telefonos[i]}\n";
+                    hayContactos = true;
+                }
+            }
+
+            if (!hayContactos)
+            {
+                contactos = "No hay contactos en la lista.";
+            }
+
+            MessageBox.Show(contactos, "Contactos");
         }
     }
 }
