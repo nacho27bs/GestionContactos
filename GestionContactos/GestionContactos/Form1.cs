@@ -65,6 +65,32 @@ namespace GestionContactos
         private void btnEliminarContacto_Click(object sender, EventArgs e)
         {
             /*Hecho por brayan*/
+            string nombre = Microsoft.VisualBasic.Interaction.InputBox("Introduce el nombre del contacto a eliminar:", "Eliminar Contacto");
+            EliminarContacto(nombre);
+        }
+        private void EliminarContacto(string nombre)
+        {
+            bool encontrado = false;
+
+            for (int i = 0; i < MAX_CONTACTOS; i++)
+            {
+                if (nombres[i] == nombre)
+                {
+                    nombres[i] = null;
+                    telefonos[i] = null;
+                    encontrado = true;
+                    break;
+                }
+            }
+
+            if (encontrado)
+            {
+                MessageBox.Show("Contacto eliminado correctamente.", "Éxito");
+            }
+            else
+            {
+                MessageBox.Show("El contacto no existe.", "Error");
+            }
         }
 
         private void btnModificarTelefono_Click(object sender, EventArgs e)
